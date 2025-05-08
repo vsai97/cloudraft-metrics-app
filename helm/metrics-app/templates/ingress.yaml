@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "metrics-app.fullname" . }}
+  name: {{ include "metrics-app.fullname" . }}-ingress
   labels:
     {{- include "metrics-app.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
