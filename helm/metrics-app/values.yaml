@@ -12,21 +12,22 @@ service:
 
 ingress:
   enabled: true
+  host: metrics.local
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 
   spec:
     rules:
-      - host: localhost
+      - host: metrics.local
         http:
           paths:
             - path: /()(counter)
               pathType: Prefix
               backend:
                 service:
-                  name: {{ include "metrics-app.fullname" .}}
+                  name: metrics-service
                   port:
-                    number: 8080
+                    number: 80
 
 env:
   PASSWORD: MYPASSWORD
